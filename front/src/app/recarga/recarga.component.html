@@ -1,0 +1,44 @@
+import { Component, OnInit } from '@angular/core';
+import { RecargaService } from '../services/recarga.service';
+
+@Component({
+  selector: 'app-recarga',
+  templateUrl: './recarga.component.html',
+  styleUrls: ['./recarga.component.css']
+})
+export class RecargaComponent implements OnInit {
+  vendedores: any[] = [];
+  operadores: any[] = [];
+  monto: number;
+  vendedorSeleccionado: string;
+  operadorSeleccionado: string;
+
+  constructor(private recargaService: RecargaService) {}
+
+  ngOnInit(): void {
+    this.obtenerVendedores();
+    this.obtenerOperadores();
+  }
+
+  obtenerVendedores() {
+    // Aquí debes implementar la lógica para obtener los vendedores
+    // Por ejemplo: this.vendedores = this.tuServicioDeVendedores.getVendedores();
+  }
+
+  obtenerOperadores() {
+    // Aquí debes implementar la lógica para obtener los operadores
+    // Por ejemplo: this.operadores = this.tuServicioDeOperadores.getOperadores();
+  }
+
+  realizarRecarga() {
+    const recargaData = {
+      vendedor: this.vendedorSeleccionado,
+      operador: this.operadorSeleccionado,
+      monto: this.monto
+    };
+
+    this.recargaService.postRecarga(recargaData).subscribe(response => {
+      console.log('Recarga realizada:', response);
+    });
+  }
+}
